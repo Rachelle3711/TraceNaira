@@ -1,0 +1,848 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TraceNaira</title>
+    <link rel="icon" type="image/svg+xml" href="assets/tracenaira-icon.svg"/>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
+  </head>
+  <body>
+    <!--Intro screen-->
+   <div class="app">
+    <div class="screen active" id="screen-intro">
+      <div class="intro-wrap">
+        <div class="intro-orb intro-orb1"></div>
+        <div class="intro-orb intro-orb2"></div>
+        <div class="intro-orb intro-orb3"></div>
+        <div class="intro-logo-wrap">
+          <img src="assets/tracenaira-logo-dark.svg" alt="TraceNaira" class="intro-logo"/>
+        </div>
+        <div class="intro-progress">
+          <div class="intro-progress-bar"></div>
+        </div>
+      </div>
+    </div>
+    <!-- ─── TERMS OF SERVICE ─── -->
+<div class="screen" id="screen-terms">
+  <div class="topbar">
+    <div class="brand">
+      <img src="assets/tracenaira-icon-small.svg" alt="" class="brand-icon"/>
+      <span class="brand-name">TraceNaira</span>
+    </div>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <button class="back-btn" onclick="goTo('screen-splash')">
+        <i class="ti ti-arrow-left"></i> Back
+      </button>
+      <h2 class="topbar-title">Terms of Service</h2>
+    </div>
+    <p class="topbar-sub">Last updated July 2026</p>
+  </div>
+  <div class="screen-body legal-body">
+    <div class="legal-section">
+      <h3 class="legal-heading">1. About TraceNaira</h3>
+      <p class="legal-text">
+        TraceNaira is a transaction tracking tool that helps Nigerian bank
+        users understand the status of their transfers. We provide
+        intelligent estimates based on known patterns of Nigerian interbank
+        settlement — not live bank data.
+      </p>
+    </div>
+    <div class="legal-section">
+      <h3 class="legal-heading">2. What We Do</h3>
+      <p class="legal-text">
+        TraceNaira helps you track pending, processing, and failed bank
+        transfers. Our estimates are based on publicly known settlement
+        timelines and community-reported outcomes. We do not have direct
+        access to NIBSS, CBN, or any bank's internal systems.
+      </p>
+    </div>
+    <div class="legal-section">
+      <h3 class="legal-heading">3. What We Don't Do</h3>
+      <p class="legal-text">
+        TraceNaira does not move, hold, or process money. We are not a
+        financial institution. We do not guarantee the accuracy of any
+        estimate or prediction. Always contact your bank directly for
+        official transaction disputes.
+      </p>
+    </div>
+    <div class="legal-section">
+      <h3 class="legal-heading">4. Your Responsibility</h3>
+      <p class="legal-text">
+        You are responsible for the accuracy of transaction details you
+        enter into TraceNaira. Incorrect details will produce incorrect
+        estimates. Never share your bank PIN, password, or OTP with anyone
+        including TraceNaira.
+      </p>
+    </div>
+    <div class="legal-section">
+      <h3 class="legal-heading">5. Estimates Are Not Guarantees</h3>
+      <p class="legal-text">
+        All time estimates provided by TraceNaira are based on historical
+        patterns and are not guaranteed. Actual transaction times may vary
+        due to bank systems, public holidays, weekends, and network issues.
+      </p>
+    </div>
+    <div class="legal-section">
+      <h3 class="legal-heading">6. Changes to These Terms</h3>
+      <p class="legal-text">
+        We may update these terms from time to time. Continued use of
+        TraceNaira after changes means you accept the updated terms.
+      </p>
+    </div>
+    <div class="legal-section">
+      <h3 class="legal-heading">7. Contact</h3>
+      <p class="legal-text">
+        For questions about these terms contact us at
+        <span class="legal-link">support@tracenaira.com</span>
+      </p>
+    </div>
+    <button class="btn-primary" onclick="goTo('screen-splash')" style="margin-top:10px;">
+      I understand — go back
+    </button>
+  </div>
+</div>
+<!-- ─── PRIVACY POLICY ─── -->
+<div class="screen" id="screen-privacy">
+  <div class="topbar">
+    <div class="brand">
+      <img src="assets/tracenaira-icon-small.svg" alt="" class="brand-icon"/>
+      <span class="brand-name">TraceNaira</span>
+    </div>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <button class="back-btn" onclick="goTo('screen-splash')">
+        <i class="ti ti-arrow-left"></i> Back
+      </button>
+      <h2 class="topbar-title">Privacy Policy</h2>
+    </div>
+    <p class="topbar-sub">Last updated July 2026</p>
+  </div>
+  <div class="screen-body legal-body">
+    <div class="legal-section">
+      <h3 class="legal-heading">1. What We Collect</h3>
+      <p class="legal-text">
+        TraceNaira collects only the information you provide directly:
+      </p>
+      <ul class="legal-list">
+        <li>Your name and email address when you sign up</li>
+        <li>Your phone number for verification</li>
+        <li>Transaction details you manually enter — amount, banks, time</li>
+        <li>Transaction status updates you report</li>
+      </ul>
+    </div>
+    <div class="legal-section">
+      <h3 class="legal-heading">2. What We Do NOT Collect</h3>
+      <p class="legal-text">
+        We do not collect or store:
+      </p>
+      <ul class="legal-list">
+        <li>Your bank account number or BVN</li>
+        <li>Your bank PIN or password</li>
+        <li>Any data directly from your bank</li>
+        <li>Your location</li>
+        <li>Any biometric data</li>
+      </ul>
+    </div>
+    <div class="legal-section">
+      <h3 class="legal-heading">3. How We Store Your Data</h3>
+      <p class="legal-text">
+        Currently all your data is stored locally on your device using
+        your browser's localStorage. This means your data never leaves
+        your device and is not stored on any external server.
+      </p>
+    </div>
+    <div class="legal-section">
+      <h3 class="legal-heading">4. How We Use Your Data</h3>
+      <p class="legal-text">
+        We use your data only to:
+      </p>
+      <ul class="legal-list">
+        <li>Personalize your experience — greeting you by name</li>
+        <li>Display your transaction history</li>
+        <li>Calculate accurate estimates for your transfers</li>
+        <li>Improve our estimation models over time</li>
+      </ul>
+    </div>
+    <div class="legal-section">
+      <h3 class="legal-heading">5. We Never Sell Your Data</h3>
+      <p class="legal-text">
+        TraceNaira does not sell, rent, or share your personal information
+        with any third party for marketing or commercial purposes. Ever.
+      </p>
+    </div>
+    <div class="legal-section">
+      <h3 class="legal-heading">6. Your Rights</h3>
+      <p class="legal-text">
+        You can delete all your data at any time by clearing your browser
+        storage or using the clear history feature in the app. You have
+        full control of your data at all times.
+      </p>
+    </div>
+    <div class="legal-section">
+      <h3 class="legal-heading">7. Children</h3>
+      <p class="legal-text">
+        TraceNaira is not intended for users under the age of 18. We do
+        not knowingly collect data from minors.
+      </p>
+    </div>
+    <div class="legal-section">
+      <h3 class="legal-heading">8. Contact</h3>
+      <p class="legal-text">
+        For privacy concerns contact us at
+        <span class="legal-link">privacy@tracenaira.com</span>
+      </p>
+    </div>
+    <button class="btn-primary" onclick="goTo('screen-splash')" style="margin-top:10px;">
+      I understand — go back
+    </button>
+  </div>
+</div>
+    <!-- splash screen-->
+      <div class="screen" id="screen-splash">
+        <div class="screen-body centered">
+          <img
+            src="assets/tracenaira-logo-light.svg"
+            alt="TraceNaira logo"
+            class="splash-logo"
+          />
+          <div class="btn-group">
+            <button class="btn-primary" onclick="goTo('screen-signup')">
+              Create an account
+            </button>
+            <button class="btn-ghost" onclick="goTo('screen-login')">
+              I already have an account
+            </button>
+          </div>
+          <p class="terms">
+            By continuing you agree to our 
+            <span class="terms-link" onclick="goTo('screen-terms')">Terms of Service</span> and
+            <span class="terms-link" onclick="goTo('screen-privacy')">Privacy Policy</span>
+          </p>
+        </div>
+      </div>
+      <!-- Singup Screen-->
+      <div class="screen" id="screen-signup">
+        <div class="topbar">
+          <div class="brand">
+            <img
+              src="assets/tracenaira-icon-small.svg"
+              alt=""
+              class="brand-icon"
+            />
+            <span class="brand-name">TraceNaira</span>
+          </div>
+        <button class="back-btn" onclick="goTo('screen-splash')">
+            <i class="ti ti-arrow-left"></i>Back
+         </button>
+          <h2 class="topbar-title">Create account</h2>
+          <p class="topbar-sub">Take less than a minute</p>
+        </div>
+        <div class="screen-body">
+          <div class="step-indicator">
+            <div class="step-active"></div>
+            <div class="step"></div>
+            <div class="step"></div>
+          </div>
+          <div class="signup-hero">
+            <div class="orb orb1"></div>
+            <div class="orb orb2"></div>
+            <div class="orb orb3"></div>
+            <div class="hero-icon-wrap"><i class="ti ti-lock-check"></i> </div>
+            <p class="signup-hero-title">Your money, fully visible</p>
+            <p class="signup-hero-sub">
+              Track every transfer across Nigerian banks in real time
+            </p>
+          </div>
+          <div class="benefit-row">
+            <div class="benefit-pill">
+              <i class="ti ti-bolt"></i> Instant tracking
+            </div>
+            <div class="benefit-pill">
+              <i class="ti ti-lock"></i> Secure & private
+            </div>
+            <div class="benefit-pill">
+              <i class="ti ti-bell"></i>Live alerts
+            </div>
+          </div>
+          <div class="field-wrap">
+            <label class="field-label">Full name</label>
+            <input
+              class="field"
+              type="text"
+              id="signup-name"  placeholder="e.g Tanimomo Peter" />
+              <span class="field-error" id="error-name"></span>
+          </div>
+          <div class="field-wrap">
+            <label class="field-label">Email address</label>
+            <input
+              class="field"
+              id="signup-email"
+              type="email"  placeholder="e.g tanimomo@gmail.com" />
+              <span class="field-error" id="error-email"></span>
+          </div>
+          <div class="field-wrap">
+            <label class="field-label">Phone number</label>
+            <input
+              class="field"
+              type="tel"
+              id="signup-phone"  placeholder="e.g 08012345678"/>
+              <span class="field-error" id="error-phone"></span>
+          </div>
+          <div class="field-wrap">
+            <label class="field-label">Password</label>
+            <input
+              class="field"
+              type="password"
+              id="signup-password" placeholder="Create a strong password"/>
+              <span class="field-error" id="error-password"></span>
+          </div>
+          <div class="field-wrap">
+            <label class="field-label">Confirm Password</label>
+            <input
+              class="field"
+              type="password"
+              id="signup-confirm"
+              placeholder="Repeat your password"/>
+              <span class="field-error" id="error-confirm"></span>
+          </div>
+          <button class="btn-shimmer" onclick="validateSignup()">
+            Create my account →
+          </button>
+           <p class="switch-text">
+            Already have an account?
+            <button class="switch-link" onclick="goTo('screen-login')">
+              Sign in
+            </button>
+          </p>  
+          <p class="terms">  By creating an account you agree to our
+  <span class="terms-link" onclick="goTo('screen-terms')">
+    Terms of Service
+  </span>
+  and
+  <span class="terms-link" onclick="goTo('screen-privacy')">
+    Privacy Policy
+  </span>
+</p>
+        </div>
+      </div>
+      <!-- verify screen-->
+      <!-- <div class="screen" id="screen-verify">
+        <div class="topbar">
+          <div class="brand">
+            <img
+              src="assets/tracenaira-icon-small.svg"
+              alt=""
+              class="brand-icon"
+            />
+            <span class="brand-name">TraceNaira</span>
+          </div>
+       <button class="back-btn" onclick="goTo('screen-splash')">
+           <i class="ti ti-arrow-left"></i> Back
+        </button>
+          <h2 class="topbar-title">Verify your number</h2>
+          <p class="topbar-sub">Enter the 6-digit code sent to your phone</p>
+        </div>
+        <div class="screen-body centered">
+          <div class="step-indicator">
+            <div class="step"></div>
+            <div class="step active"></div>
+            <div class="step"></div>
+          </div>
+          <div class="otp-wrap">
+            <input class="otp-box" type="text" maxlength="1" />
+            <input class="otp-box" type="text" maxlength="1" />
+            <input class="otp-box" type="text" maxlength="1" />
+            <input class="otp-box" type="text" maxlength="1" />
+            <input class="otp-box" S type="text" maxlength="1" />
+            <input class="otp-box" type="text" maxlength="1" />
+          </div>
+          <button class="btn-primary" onclick="validateOTP()">
+            Verify & continue
+          </button>
+          <p class="resend-text">
+            Didn't get a code?
+            <span class="resend-timer" id="resend-timer">Resend In 0:45</span>
+          </p>
+        </div>
+      </div> -->
+
+      <!-- login screen-->
+      <div class="screen" id="screen-login">
+        <div class="topbar">
+          <div class="brand">
+            <img
+              src="assets/tracenaira-icon-small.svg"
+              alt=""
+              class="brand-icon"/>
+            <span class="brand-name">TraceNaira</span>
+          </div>
+         <button class="back-btn" onclick="goTo('screen-splash')">
+             <i class="ti ti-arrow-left"></i>Back
+        </button>
+          <h2 class="topbar-title">Welcome back</h2>
+          <p class="topbar-sub">Sign in to your account</p>
+      </div>
+        <div class="screen-body">
+          <div class="field-wrap">
+            <label class="field-label">Email or phone number</label>
+            <input
+              class="field"
+              type="text"
+              id="login-email"
+              placeholder="Enter your email or phone number"/>
+          </div>
+          <div class="field-wrap">
+            <label class="field-label">Password</label>
+            <input
+              class="field"
+              type="password"
+              id="login-password"
+              placeholder="Enter your password" />
+          </div>
+          <div class="forgot-wrap">
+            <button class="switch-link" onclick="forgotPassword()">Forgot password?</button>
+          </div>
+          <button class="btn-primary" onclick="validateLogin()">
+            Sign in →
+          </button>
+          <div class="divider">
+            <div class="divider-line"></div>
+            <span class="divider-text">or</span>
+            <div class="divider-line"></div>
+          </div>
+          <button class="btn-ghost" onclick="signInWithGoogle()">
+           <i class="ti ti-brand-google"></i> Continue with Google
+          </button>
+          <p class="switch-text">
+            No account yet?
+            <button class="switch-link" onclick="goTo('screen-signup')">
+              Create one
+            </button>
+          </p>
+        </div>
+      </div>
+      <!-- Home screen-->
+      <div class="screen" id="screen-home">
+        <div class="topbar">
+          <div class="brand">
+            <img
+              src="assets/tracenaira-icon-small.svg"
+              alt=""
+              class="brand-icon"/>
+            <span class="brand-name">TraceNaira</span>
+          </div>
+          <button class="logout-btn" onclick="logout()">
+            <i class="ti ti-logout"></i>
+          </button>
+          <h2 class="topbar-title">Good afternoon 👋</h2>
+          <p class="topbar-sub">Track where your money is - always</p>
+        </div>
+        <div class="screen-body">
+          <div class="home-hero">
+            <p class="hero-label">Money stuck? We've got you</p>
+            <h3 class="hero-title">Know exactly where your transfer is</h3>
+            <p class="hero-sub">
+              Real-time tracking for Nigerian bank transfers
+            </p>
+          </div>
+          <div class="stat-row">
+            <div class="stat-card">
+              <div class="stat-num" id="stat-total">0</div>
+              <div class="stat-label">Tracked today</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num" id="stat-pending">0</div>
+              <div class="stat-label">Pending</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num" id="stat-amount">₦0k</div>
+              <div class="stat-label">In transit</div>
+            </div>
+          </div>
+          <p class="section-title">Quick actions</p>
+          <button class="quick-btn" onclick="goTo('screen-track')">
+            <div class="quick-icon">+</div>
+            <div>
+              <div class="quick-title">Log a transaction</div>
+              <div class="quick-sub">Track a pending or failed transaction</div>
+            </div>
+          </button>
+          <button class="quick-btn" onclick="goTo('screen-history')">
+            <div class="quick-icon">⟳</div>
+            <div>
+              <div class="quick-title">My transactions</div>
+              <div class="quick-sub">View all your tracked transfers</div>
+            </div>
+          </button>
+        </div>
+        <nav class="navbar">
+          <button
+            class="nav-item active"
+            onclick="switchTab(this, 'screen-home')">
+            <i class="ti ti-home"></i>
+            <span>Home</span>
+          </button>
+          <button class="nav-item" onclick="switchTab(this, 'screen-track')">
+            <i class="ti ti-plus"></i>
+            <span>Track</span>
+          </button>
+          <button class="nav-item" onclick="switchTab(this, 'screen-history')">
+            <i class="ti ti-history"></i>
+            <span>History</span>
+          </button>
+          <!-- Add to navbar -->
+     <button class="nav-item">
+      <i class="ti ti-user-circle"></i>
+      <span>Profile</span>
+       </button>
+        </nav>
+      </div>
+      <!-- Track screen-->
+      <div class="screen" id="screen-track">
+        <div class="topbar">
+          <div class="brand">
+            <img
+              src="assets/tracenaira-icon-small.svg"
+              alt=""
+              class="brand-logo"
+            />
+            <span class="brand-name">TraceNaira</span>
+          </div>
+          <button class="back-btn" onclick="goTo('screen-splash')">
+            <i class="ti ti-arrow-left"></i> Back
+          </button>
+          <h2 class="topbar-title">Log a transaction</h2>
+          <p class="topbar-sub">We'll show you where your money is</p>
+        </div>
+        <div class="screen-body">
+          <div class="track-hero">
+            <div class="track-nodes">
+              <div class="track-node">
+                <div class="node-box"><i class="ti ti-building-bank"></i></div>
+                <span class="node-label">Your bank</span>
+              </div>
+              <div class="track-path">
+                <div class="path-dot"></div>
+                <div class="path-dot"></div>
+                <div class="path-dot"></div>
+              </div>
+              <div class="track-node">
+                <div class="node-box pulse">⇄</div>
+                <span class="node-label">NIBSS</span>
+              </div>
+              <div class="track-path">
+                <div class="path-dot"></div>
+                <div class="path-dot"></div>
+                <div class="path-dot"></div>
+              </div>
+              <div class="track-node">
+                <div class="node-box">👤</div>
+                <span class="node-label">Receiver</span>
+              </div>
+            </div>
+            <p class="track-hero-title">We trace every step your money takes</p>
+            <p class="track-hero-sub">Fill in your transaction details below</p>
+          </div>
+          <div class="form-card">
+            <div class="field-wrap">
+              <label class="field-label">Amount sent (₦)</label>
+              <input class="field" type="tel" id="track-amount" placeholder="e.g 25,000" />
+            </div>
+            <div class="field-wrap">
+              <label class="field-label">Sending bank</label>
+              <select class="field" id="track-sending" >
+                <option value="">Select bank</option>
+                <option>GTBank</option>
+                <option>Access Bank</option>
+                <option>Zenith Bank</option>
+                <option>UBA</option>
+                <option>First Bank</option>
+                <option>FCMB</option>
+                <option>Premium Trust Bank</option>
+                <option>Stering Bank</option>
+                <option>Kuda</option>
+                <option>Moniepoint</option>
+                <option>Opay</option>
+                <option>Palmpay</option>
+              </select>
+            </div>
+            <div class="field-wrap">
+              <label class="field-label">Receiving bank</label>
+              <select class="field" id="track-receiving">
+                <option value="">Select bank</option>
+                <option>GTBank</option>
+                <option>Access Bank</option>
+                <option>Zenith Bank</option>
+                <option>UBA</option>
+                <option>First Bank</option>
+                <option>FCMB</option>
+                <option>Premium Trust Bank</option>
+                <option>Stering Bank</option>
+                <option>Kuda</option>
+                <option>Moniepoint</option>
+                <option>Opay</option>
+                <option>Palmpay</option>
+              </select>
+            </div>
+            <div class="field-wrap">
+              <label class="field-label"> Time of transaction</label>
+              <input
+                class="field"
+                type="time" id="track-time"
+                placeholder="e.g 2:30 PM today" />
+            </div>
+            <div class="field-wrap">
+              <label class="field-label">Transaction type</label>
+              <select class="field" id="track-transaction">
+                <option>Bank transfer</option>
+                <option>POS payment</option>
+                <option>USSD transfer</option>
+                <option>Mobile app transfer</option>
+              </select>
+            </div>
+            <div class="field-wrap">
+              <label class="field-label">Reference number (optional) </label>
+              <input
+                class="field"
+                type="number"
+                placeholder="Paste from your SMS alert" />
+            </div>
+            <button class="btn-primary" onclick="validateTrackForm()">
+              Track my money →
+            </button>
+          </div>
+        </div>
+        <nav class="navbar">
+          <button class="nav-item" onclick="switchTab(this, 'screen-home')">
+            <i class="ti ti-home"></i> <span>Home</span>
+          </button>
+          <button
+            class="nav-item active"
+            onclick="switchTab(this, 'screen-track')">
+            <i class="ti ti-plus" ></i> <span>Track</span>
+          </button>
+          <button class="nav-item" onclick="switchTab(this, 'screen-history')">
+            <i class="ti ti-history"></i><span>History</span>
+          </button>
+          <button class="nav-item">
+    <i class="ti ti-user"></i><span>Profile</span>
+          </button>
+        </nav>
+      </div>
+      <!-- JOURNEY SCREEN-->
+      <div class="screen" id="screen-journey">
+        <div class="topbar">
+          <div class="brand">
+            <img
+              src="assets/tracenaira-icon-small.svg"
+              alt=""
+              class="brand-icon"
+            />
+            <span class="brand-name">TraceNaira</span>
+          </div>
+        <button class="back-btn" onclick="history.go(-1) || goTo('screen-history')">
+            <i class="ti ti-arrow-left"></i> Back
+        </button>
+          <h2 class="topbar-title">Transaction journey</h2>
+          <p class="topbar-sub">Sent 2:14 PM · GTBank → Access Bank</p>
+        </div>
+        <div class="screen-body">
+          <div class="amount-hero">
+            <div class="amount-num">₦25,000</div>
+            <div class="amount-sub">Transfer details</div>
+          </div>
+          <span class="tag tag-pending">Processing</span>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-left">
+                <div class="tl-dot done"></div>
+                <div class="tl-line done"></div>
+              </div>
+              <div class="tl-content">
+                <div class="tl-title">Debit confirmed</div>
+                <div class="tl-desc">GTBank debited your account</div>
+                <div class="tl-time">2:14 PM</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-left">
+                <div class="tl-dot done"></div>
+                <div class="tl-line done"></div>
+              </div>
+              <div class="tl-content">
+                <div class="tl-title">Sent to NIBSS switch</div>
+                <div class="tl-desc">Entered the interbank network</div>
+                <div class="tl-time">2:15 PM</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-left">
+                <div class="tl-dot active"></div>
+                <div class="tl-line"></div>
+              </div>
+              <div class="tl-content">
+                <div class="tl-title pending">Awaiting receiving bank</div>
+                <div class="tl-desc">Access Bank is processing the credit</div>
+                <div class="tl-time">Now</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-left">
+                <div class="tl-dot"></div>
+              </div>
+              <div class="tl-content">
+                <div class="tl-title idle">Credit confirmed</div>
+                <div class="tl-desc idle">Receiver gets the money</div>
+              </div>
+            </div>
+          </div>
+          <div class="estimate-box">
+            <div class="estimate-label">Estimated completion</div>
+            <div class="estimate-val">Within 15-30 minutes</div>
+          </div>
+        </div>
+        <div class="status-update" id="status-update">
+          <p class="status-update-title">Did your money arrive?</p>
+          <p class="status-update-sub">Help us improve estimates for everyone</p>
+          <div class="status-btns">
+            <button class="status-btn" onclick="updateStatus('completed')"><i class="ti-ti-circle-check"></i> Money received</button>
+            <button class="status-btn" onclick="updateStatus('failed')"><i class="ti-ti-circle-x"></i> Failed / Reversed</button>
+          </div>
+        </div>
+        <div class="failed-box" id="failed-box" style="display:none;">
+          <div class="failed-header">
+            <span class="failed-icon">🔴</span>
+            <span class="failed-title">Transaction failed</span>
+          </div>
+          <div class="failed-body">
+            <p class="failed-desc" id="failed-desc">
+              Your money stopped at the receiving bank. A reversal has been initiated automatically.
+            </p>
+            <div class="failed-row">
+              <span class="failed-label">Where it stopped</span>
+              <span class="failed-val" id="failed-where">Receiving bank</span>
+            </div>
+            <div class="failed-row">
+              <span class="failed-label">Your debit</span>
+              <span class="failed-val red">Still held</span>
+            </div>
+            <div class="failed-row">
+              <span class="failed-label">Reversal expected</span>
+              <span class="failed-val" id="failed-reversal">Within 24-48 hours</span>
+            </div>
+          </div>
+          <div class="failed-action">
+            <div class="failed-action-title">What to do now</div>
+            <div class="failed-action-desc" id="failed-action">Wait until tomorrow. 
+              If money is not reversed, visit your bank with your reference number and show them this screen </div>
+          </div>
+        </div>
+        <div class="success-box" id="success-box" style="display:none;">
+          <div class="success-header">
+            <span class="success-icon">✅</span>
+            <span class="success-title">Transfer successful</sddvfseyspan>
+          </div>
+          <div class="success-body">
+            <p class="success-desc">Your money has been delivered successfully.
+              The receiver should have it now.
+            </p>
+          </div>
+        </div>
+        <nav class="navbar">
+          <button class="nav-item" onclick="switchTab(this, 'screen-home')">
+            <i class="ti ti-home"></i><span>Home</span>
+          </button>
+          <button class="nav-item" onclick="switchTab(this, 'screen-track')">
+            <i class="ti ti-plus"></i><span>Track</span>
+          </button>
+          <button class="nav-item" onclick="switchTab(this, 'screen-history')">
+            <i class="ti ti-history"></i><span>History</span>
+          </button>
+          <button class="nav-item">
+    <i class="ti ti-user"></i><span>Profile</span>
+          </button>
+        </nav>
+      </div>
+      <!-- ─── HISTORY SCREEN ─── -->
+      <div class="screen" id="screen-history">
+        <div class="topbar">
+          <div class="brand">
+            <img
+              src="assets/tracenaira-icon-small.svg"
+              alt=""
+              class="brand-icon"
+            />
+            <span class="brand-name">TraceNaira</span>
+          </div>
+          <div class="topbar-row">
+            <div>
+              <h2 class="topbar-title">My transactions</h2>
+              <p class="topbar-sub">Track every transfer</p>
+            </div>
+            <button class="clear-btn" onclick="clearHistory()">
+              Clear all
+            </button>
+          </div>
+        </div>
+        <div class="screen-body">
+          <p class="section-title">Today</p>
+          <div id="history-list"></div>
+          <div class="empty-state" id="history-empty">
+            <div class="empty-icon"></div>
+            <p class="empty-title">No transactions yet</p>
+            <p class="empty-sub">Log a transaction to start tracking</p>
+            <button class="btn-primary" onclick="goTo('screen-track')">
+              Track a transaction
+            </button>
+          </div>
+        </div>
+        <nav class="navbar">
+          <button class="nav-item" onclick="switchTab(this, 'screen-home')">
+            <i class="ti ti-home"></i><span>Home</span>
+          </button>
+          <button class="nav-item" onclick="switchTab(this, 'screen-track')">
+            <i class="ti ti-plus"></i><span>Track</span>
+          </button>
+          <button
+            class="nav-item active"
+            onclick="switchTab(this, 'screen-history')">
+            <i class="ti ti-history"></i><span>History</span>
+          </button>
+          <button class="nav-item">
+    <i class="ti ti-user"></i><span>Profile</span>
+          </button>
+        </nav>
+        </div>
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-icon" id="modal-icon">⚠️</div>
+    <h3 class="modal-title" id="modal-title">Are you sure?</h3>
+    <p class="modal-message" id="modal-message">This action cannot be undone.</p>
+    <div class="modal-btns">
+      <button class="modal-btn-cancel" id="modal-cancel">Cancel</button>
+      <button class="modal-btn-confirm" id="modal-confirm">Confirm</button>
+    </div>
+  </div>
+</div>
+      </div>
+<!-- Firebase SDK - Compatible version -->
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyAc_oa8oBsTMhhUfRyael9ed1OnLD2nsWY",
+    authDomain: "tracenaira.firebaseapp.com",
+    projectId: "tracenaira",
+    storageBucket: "tracenaira.firebasestorage.app",
+    messagingSenderId: "1088698436080",
+    appId: "1:1088698436080:web:5303db45eb133f5fad3535"
+  };
+  firebase.initializeApp(firebaseConfig);
+</script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
