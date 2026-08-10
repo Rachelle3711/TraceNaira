@@ -16,6 +16,22 @@ function goTo(screenId) {
   if (screenId === 'screen-login') {
     clearLoginForm();
   }
+  if (screenId === 'screen-journey'){
+    var index = sessionStorage.getItem('current_tx_index');
+    if( index === null) {
+      goTo('screen-track');
+      return;
+    }
+  }
+  document.querySelectorAll('.screen').forEach(function(screen){
+    screen.classList.remove('active');
+  })
+  document.getElementById(screenId).classList.add('active');
+  if (screenId === 'screen-history') renderHistory();
+  if (screenId === 'screen-home'){
+    updateHomeStats();
+    setGreeting();
+  }
 }
 //intro auto navigate
 window.addEventListener('load', function(){
@@ -143,7 +159,7 @@ document.getElementById('signup-confirm').addEventListener('input', function(){
 //update home stats
 function updateHomeStats(){
   var transactions = getTransactions();
-  var total=transactions.length;
+  var total= transactions.length;
 
 var pending= 0;
 for (var i =0; i < transactions.length; i++){
@@ -159,7 +175,16 @@ for (var i =0; i< transactions.length; i++){
   }
 }
 //FORMAT AMOUNT
-var formattedAmount = '₦' + totalAmount.toLocaleString();
+function formatAmount(amount ){
+  if(amount >= 1000000){
+    return '₦' + (amount/1000000).toFixed(1) + 'M';
+  }
+  if(amount >= 1000) {
+    return '₦' + (amount/1000).toFixed(0) + 'k'
+  }
+  return '₦' + amount.toLocaleString();
+}
+var formattedAmount = formatAmount(totalAmount);
 //update the DOM
 var totalEl = document.getElementById('stat-total');
 var pendingEl = document.getElementById('stat-pending');
@@ -385,120 +410,76 @@ function validateTrackForm() {
 
 //update journey screen
 function updateJourneyScreen(transaction){
-  var amountEl = document.querySelector('#screen-journey .amount-num');
+  var amountEl = document.getElementById('journey-amount');
   if( amountEl) {
-    amountEl.textContent= '₦' + Number(transaction.amount).toLocaleString();}
-  var subEl = document.querySelector('#screen-journey .amount-sub');
+    amountEl.textContent = '₦' + Number(transaction.amount).toLocaleString();}
+  var subEl = document.getElementById('journey-sub');
   if (subEl){
     subEl.textContent = 'Transfer via ' + transaction.type;}
-  var topbarSub = document.querySelector('#screen-journey .topbar-sub');
+  var topbarSub = document.getElementById('journey-topbar-sub');
   if (topbarSub){
     topbarSub.textContent = 'Sent ' + transaction.time + 
     ' . ' + transaction.sendingBank +
-    ' →' + transaction.receivingBank;
+    ' → ' + transaction.receivingBank;
   }
-  var tlDescriptions = document.querySelectorAll('#screen-journey .tl-desc');
-  //step 1-debit confirmed
-  if (tlDescriptions[0]) {
-   tlDescriptions[0].textContent = transaction.sendingBank + ' debited your account';
-  }
-  //step2-NIBSS
-  if (tlDescriptions[1]){
-    tlDescriptions[1].textContent = 'Payment entered the interbank network';
-  }
-  //step 3-receiving bank
-  if (tlDescriptions[2]) {
-    tlDescriptions[2].textContent = transaction.receivingBank +' is processing the credit';
-  }
-  //step 4-credit confirmed
-  if (tlDescriptions[3]) {
-    tlDescriptions[3].textContent = 'Receiver gets the money';
-  }
-  var tlTitles = document.querySelectorAll('#screen-journey .tl-title');
-  if (tlTitles[0]){ tlTitles[0].textContent ='Debit Confirmed';}
-  if (tlTitles[1]){ tlTitles[1].textContent = 'Sent to NIBSS switch';}
-  if (tlTitles[2]){ tlTitles[2].textContent = 'Awaiting ' + transaction.receivingBank;}
-  if (tlTitles[3]){ tlTitles[3].textContent = 'Credit confirmed';}
-
-  //get status
-var status = transaction.status || getTransactionStatus(transaction);
-//hide both boxes by default
-var failedBox = document.getElementById('failed-box');
+  //timeline
+  var desc0 = document.getElementById('tl-desc-0')
+  if (desc0) desc0.textContent = transaction.sendingBank + ' debited your account';
+  var desc2 = document.getElementById('tl-desc-2')
+  if(desc2) desc2.textContent = transaction.receivingBank + ' is processing the credit';
+  var title2 = document.getElementById('tl-title-2')
+  if(title2) title2.textContent = 'Awaiting ' + transaction.receivingBank;
+  var time0= document.getElementById('tl-time-0')
+  if (time0) time0.textContent = transaction.time;
+  var time1 = document.getElementById('tl-time-1')
+  if (time1) time1.textContent = transaction.time;
+//status
+var status = transaction.status || 'pending';
+var tag = document.getElementById('journey-tag');
+var estimateBox = document.getElementById('journey-estimate');
+var estimateVal = document.getElementById('journey-estimate-val');
+var failedBox = document.getElementById('failed-box')
 var successBox = document.getElementById('success-box');
-var estimateBox = document.querySelector('#screen-journey .estimate-box');
-var tag = document.querySelector('#screen-journey .tag');
 
+//hide both boxes by default
 if(failedBox) failedBox.style.display = 'none';
-if (successBox) successBox.style.display ='none';
+if(successBox) successBox.style.display = 'none';
 
-//update based on status
-if(status === 'failed'){
-  if (tag) {
-    tag.className = 'tag tag-failed';
-    tag.textContent ='Failed';
+if (status === 'failed') {
+  if (tag){
+    tag.className = 'tag tag-failed'; tag.textContent = 'Failed';
   }
-  //show failed box
-  if(failedBox) { failedBox.style.display = 'block';}
-  if(estimateBox) {estimateBox.style.display ='none';}
+  if(estimateBox) estimateBox.style.display= 'none';
+  if(failedBox) failedBox.style.display= 'block';
 
   var failedWhere = document.getElementById('failed-where');
   var failedReversal = document.getElementById('failed-reversal');
   var failedAction = document.getElementById('failed-action');
 
-  if (failedWhere) {failedWhere.textContent = transaction.receivingBank + ' processing';}
-  if(failedReversal){failedReversal.textContent = getReversal(transaction.sendingBank);}
-  if(failedAction){
-    failedAction.textContent ='Wait for the reversal window. If money is not reversed, ' + 'visit ' + transaction.sendingBank + ' with your reference number. ';
-  }
-  var tlDots = document.querySelectorAll('#screen-journey .tl-dot');
-  if (tlDots[2]){
-    tlDots[2].className = 'tl-dot failed';
-  }
-  if (tlTitles[2]){
-    tlTitles[2].textContent = 'Failed at ' + transaction.receivingBank;
-    tlTitles[2].className = 'tl-title failed-title';
-  }
-}else if (status ==='completed'){
-  //update tag
-  if(tag) {
-    tag.className = 'tag tag-success';
-    tag.textContent = 'Completed';
-  }
-  //show success box
-  if (successBox) { successBox.style.display = 'block'}
-  if (estimateBox){estimateBox.style.display = 'none';}
+  if (failedWhere) failedWhere.textContent = transaction.receivingBank + ' processing';
+  if (failedReversal) failedReversal.textContent = getReversal(transaction.sendingBank);
+  if (failedAction) failedAction.textContent =
+  'Wait for the reversal window. If money is not reversed visit ' +
+  transaction.sendingBank + ' with your reference number.';
 
-//mark all timeline dots as done
-var tlDots = document.querySelectorAll('#screen-journey .tl-dot');
-tlDots.forEach(function(dot){
-  dot.className ='tl-dot done';
-});
-var tlLines = document.querySelectorAll('#screen-journey .tl-line');
-tlLines.forEach(function(line){
-  line.className ='tl-line done' ;
-});
+} else if (status === 'completed') {
+  if (tag) {
+    tag.className ='tag tag-success'; tag.textContent = 'Completed';
+  }
+  if(estimateBox) estimateBox.style.display = 'none'
+  if(successBox) successBox.style.display = 'block';
+
 } else {
-  if(tag){
-    tag.className ='tag tag-pending';
-    tag.textContent ='Processing';
+  if(tag) {
+    tag.className = 'tag tag-pending'; tag.textContent = ' Processing';
   }
-  if (estimateBox){estimateBox.style.display = 'block';}
-
-  var estimateVal = document.querySelector('#screen-journey .estimate-val');
+  if(estimateBox) estimateBox.style.display = 'block';
   if (estimateVal){
     estimateVal.textContent = getEstimate(transaction.sendingBank, transaction.receivingBank);
-  }} 
-  var statusUpdate = document.getElementById('status-update');
-  if (statusUpdate){
-    //only show if still pending
-    if(transaction.status ==='pending' || !transaction.status){
-    statusUpdate.style.display ='block';
-    }else{
-      statusUpdate.style.display ='none'
-    }
   }
-  goTo('screen-journey');
 }
+}
+
 function getReversal(sendingBank) {
   var fintechs = ['Kuda','Opay', 'Palmpay', 'Moniepoint'];
   var isFintech = fintechs.indexOf(sendingBank) !== -1;
@@ -564,12 +545,13 @@ function renderHistory() {
   var transactions = getTransactions();
   //update subtitle with real amount
   var sub = document.querySelector('#screen-history .topbar-sub');
-if(sub) {
-  var count = transactions.length;
-  sub.textContent = count === 0? 'No transactions yet' :
-  count ===1 ? '1 transaction tracked':
-  count + ' transactions tracked'
-}
+ if (sub){
+  sub.textContent= transactions.length === 0
+  ? 'No transactions yet'
+  : transactions.length === 1
+  ? ' 1 transaction tracked '
+  :  transactions.length + ' transactions tracked';
+ }
 if (transactions.length === 0){
   historyList.innerHTML = '';
 emptyState.style.display = 'flex';

@@ -471,7 +471,7 @@
             </div>
           </button>
           <button class="quick-btn" onclick="goTo('screen-history')">
-            <div class="quick-icon">⟳</div>
+            <div class="quick-icon"><i class="ti ti-history"></i></div>
             <div>
               <div class="quick-title">My transactions</div>
               <div class="quick-sub">View all your tracked transfers</div>
@@ -561,8 +561,9 @@
                 <option>UBA</option>
                 <option>First Bank</option>
                 <option>FCMB</option>
+                <option>Ecobank</option>
                 <option>Premium Trust Bank</option>
-                <option>Stering Bank</option>
+                <option>Sterling Bank</option>
                 <option>Kuda</option>
                 <option>Moniepoint</option>
                 <option>Opay</option>
@@ -579,8 +580,9 @@
                 <option>UBA</option>
                 <option>First Bank</option>
                 <option>FCMB</option>
+                <option>Ecobank</option>
                 <option>Premium Trust Bank</option>
-                <option>Stering Bank</option>
+                <option>Sterling Bank</option>
                 <option>Kuda</option>
                 <option>Moniepoint</option>
                 <option>Opay</option>
@@ -647,14 +649,14 @@
             <i class="ti ti-arrow-left"></i> Back
         </button>
           <h2 class="topbar-title">Transaction journey</h2>
-          <p class="topbar-sub">Sent 2:14 PM · GTBank → Access Bank</p>
+          <p class="topbar-sub" id="journey-topbar-sub">Transaction details</p>
         </div>
         <div class="screen-body">
           <div class="amount-hero">
-            <div class="amount-num">₦25,000</div>
-            <div class="amount-sub">Transfer details</div>
+            <div class="amount-num" id="journey-amount"></div>
+            <div class="amount-sub" id="journey-sub">Transfer details</div>
           </div>
-          <span class="tag tag-pending">Processing</span>
+          <span class="tag tag-pending" id="journey-tag">Processing</span>
           <div class="timeline">
             <div class="tl-item">
               <div class="tl-left">
@@ -663,8 +665,8 @@
               </div>
               <div class="tl-content">
                 <div class="tl-title">Debit confirmed</div>
-                <div class="tl-desc">GTBank debited your account</div>
-                <div class="tl-time">2:14 PM</div>
+                <div class="tl-desc" id="tl-desc-0"></div>
+                <div class="tl-time" id="tl-time-0"></div>
               </div>
             </div>
             <div class="tl-item">
@@ -675,7 +677,7 @@
               <div class="tl-content">
                 <div class="tl-title">Sent to NIBSS switch</div>
                 <div class="tl-desc">Entered the interbank network</div>
-                <div class="tl-time">2:15 PM</div>
+                <div class="tl-time" id="tl-time-1"></div>
               </div>
             </div>
             <div class="tl-item">
@@ -685,7 +687,7 @@
               </div>
               <div class="tl-content">
                 <div class="tl-title pending">Awaiting receiving bank</div>
-                <div class="tl-desc">Access Bank is processing the credit</div>
+                <div class="tl-desc" id="tl-desc-2"></div>
                 <div class="tl-time">Now</div>
               </div>
             </div>
@@ -701,7 +703,7 @@
           </div>
           <div class="estimate-box">
             <div class="estimate-label">Estimated completion</div>
-            <div class="estimate-val">Within 15-30 minutes</div>
+            <div class="estimate-val" id="journey-estimate-val"></div>
           </div>
         </div>
         <div class="status-update" id="status-update">
