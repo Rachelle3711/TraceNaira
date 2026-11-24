@@ -462,8 +462,8 @@ function OnItsWay({ c, owner }: P) {
         </div>
         <p className="tk-rule">{ruleNote(c.type)}</p>
         <CrowdLine c={c} elapsedMin={Math.floor(elapsed / 60000)} />
-        {owner && <AlertAsk c={c} uid={owner} />}
       </section>
+      {owner && <AlertAsk c={c} uid={owner} />}
 
       {guest && (
         <>
@@ -740,9 +740,9 @@ function Refund({ c, owner }: P) {
             : `That's the CBN deadline, not the usual wait. ${ruleNote(c.type)}`}
         </p>
         <CrowdLine c={c} elapsedMin={Math.floor((now - c.sentAt) / 60000)} />
-        {owner && <AlertAsk c={c} uid={owner} />}
       </section>
-
+       {owner && <AlertAsk c={c} uid={owner} />}
+       
       <p className="tk-h">WHAT TO DO NOW</p>
       <MessageStep
         c={c}
